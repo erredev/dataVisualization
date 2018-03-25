@@ -4,7 +4,7 @@
 	var svgWidth = 200;
   	var svgHeight = 500;
   	var barMargin = 5;
-  	var barWidth = 4;
+  	var barWidth = 20;
 
 	var linearScale = d3.scaleLinear()
   					.domain([0, 100])
@@ -22,6 +22,12 @@
 	.attr("x", function(d,i){ return (i+1)*(barWidth + barMargin) })
 	.attr("y", function(d){return svgHeight-linearScale(d)})
 	.attr("width", barWidth)
-	.attr("height", function(d){ return linearScale(d) });
+	.attr("height", function(d){ return linearScale(d) })
+	.on("mouseover", function(){
+		d3.select(this).style("cursor", "pointer").attr("fill", "orange");
+	})
+	.on("mouseout", function(){
+		d3.select(this).style("cursor", "default").attr("fill", "yellow");	
+	})
 
 })();
